@@ -23,11 +23,10 @@ sirjoancornella_statuses = twitter_api.GetUserTimeline(screen_name="sirjoancorne
 counter = 0
 for status in sirjoancornella_statuses:
 	if type(status.media) is list:
-		print(status.media[0].display_url)
-
-"""		response = requests.get(status.media[0].url)
+		print(status.media[0].media_url)
+		response = requests.get(status.media[0].media_url) # from http://docs.python-requests.org/en/master/user/quickstart/#response-content
 		img = Image.open(BytesIO(response.content))
-		print(type(img))"""
+img.show()
 		
 
 
