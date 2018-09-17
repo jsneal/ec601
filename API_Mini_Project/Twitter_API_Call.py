@@ -3,6 +3,7 @@
 ## This module calls the Twitter API for Joan Cornella, grab's statuses from their Twitter timeline, 
 ## and prints the media of these statuses. 
 ## It is an initial file to get off the ground running with this project
+import Read_API_Keys
 import twitter
 import requests
 from io import BytesIO
@@ -11,12 +12,14 @@ from PIL import Image
 """.request
 with urllib.request.urlopen('') as response:
    html = response.read()"""
-
-
-twitter_api = twitter.Api(consumer_key='aq3WXwQGtK1NllOV0eXGhPfuY',
-                          consumer_secret='7CNOFhFNdVZ6AOUZDCc6C2aaiiMZGLnmU34PgfMZwwdQnHUwTf',
-                          access_token_key='1039252761295110145-15GbsAUmdsTasi3rt1QEYbpAg23ys5',
-                          access_token_secret='iZv9jFSUXPe2tRgkyh9bD6MxAoCEsBFGaf8jRw3AhsipO')
+print(Read_API_Keys.api_key)
+print(Read_API_Keys.api_secret_key)
+print(Read_API_Keys.access_token)
+print(Read_API_Keys.access_token_secret)
+twitter_api = twitter.Api(consumer_key=Read_API_Keys.api_key,
+                          consumer_secret=Read_API_Keys.api_secret_key,
+                          access_token_key=Read_API_Keys.access_token,
+                          access_token_secret=Read_API_Keys.access_token_secret)
 print(twitter_api.VerifyCredentials())
 print("\n\n\n")
 sirjoancornella_statuses = twitter_api.GetUserTimeline(screen_name="sirjoancornella")
