@@ -2,7 +2,8 @@
 def GoogleVis_API_Call(credentials, filename_list):
     import io
     import os
-
+    label_list = []
+    image_list = []
     # Imports the Google Cloud client library
     from google.cloud import vision
     from google.cloud.vision import types
@@ -16,7 +17,7 @@ def GoogleVis_API_Call(credentials, filename_list):
             file_name = os.path.join(
                 os.path.dirname(__file__),
                 twitter_image)
-
+            image_list.append(file_name)
             # Loads the image into memory
             with io.open(file_name, 'rb') as image_file:
                 content = image_file.read()
@@ -31,5 +32,8 @@ def GoogleVis_API_Call(credentials, filename_list):
             for label in labels:
                 print(label.description)
             print("\n\n")
+            label_list.append(label.description)
         except:
             print('Error')
+            label_list.append('No label')
+    return [label_list, image_list]
