@@ -7,6 +7,7 @@ def Twitter_API_Call(api_access_info):
     import twitter
     import urllib
     url_list = []
+    image_list = []
     api_key = api_access_info[0]
     api_secret_key = api_access_info[1]
     access_token = api_access_info[2]
@@ -16,6 +17,7 @@ def Twitter_API_Call(api_access_info):
                             access_token_key=access_token,
                             access_token_secret=access_token_secret)
     sirjoancornella_statuses = twitter_api.GetUserTimeline(screen_name="sirjoancornella")
+    zeros = 3
     counter = 0
     for status in sirjoancornella_statuses:
 	    if type(status.media) is list:
@@ -23,8 +25,16 @@ def Twitter_API_Call(api_access_info):
 		    url_list.append(status.media[0].media_url)
 		    print("\n")
             try:
-                image_filename = "Twitter_Pictures/image"+str(counter)+".jpg"
+                zero_str = ""
+                digits = counter/10 + 1
+                digits = zeros - digits
+                for i in range(1, digits+1):
+                     zero_str = zero_str + "0"
+                image_filename = "Twitter_Pictures/image"+zero_str+str(counter)+".jpg"
+                print(zero_str+str(counter))
+                image_list.append()
                 image = urllib.urlretrieve(status.media[0].media_url, image_filename)
                 counter=counter+1
             except:
         	    counter=counter+1
+    return image_list
