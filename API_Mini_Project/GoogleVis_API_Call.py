@@ -16,11 +16,20 @@ def GoogleVis_API_Call(credentials, filename_list):
             file_name = os.path.join(
                 os.path.dirname(__file__),
                 twitter_image)
-            
+
+            # Loads the image into memory
+            with io.open(file_name, 'rb') as image_file:
+                content = image_file.read()
+
+            image = types.Image(content=content)
+
             # Performs label detection on the image file
-            response = client.annotate_image({
-                'image': {'source': {'image_uri': twitter_image}},
-                'features': [{'type': vision.enums.Feature.Type.FACE_DETECTION}],
-                })
+            response = client.label_detection(image=image)
+            labels = response.label_annotations
+
+            print('Labels:')
+            for label in labels:
+                print(label.description)
+            print("\n\n")
         except:
             print('Error')
