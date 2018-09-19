@@ -7,6 +7,7 @@ def Twitter_API_Call(api_access_info):
     import twitter
     import urllib
     url_list = []
+    filename_list = []
     api_key = api_access_info[0]
     api_secret_key = api_access_info[1]
     access_token = api_access_info[2]
@@ -24,7 +25,9 @@ def Twitter_API_Call(api_access_info):
 		    print("\n")
             try:
                 image_filename = "Twitter_Pictures/image"+str(counter)+".jpg"
+                filename_list.append(image_filename)
                 image = urllib.urlretrieve(status.media[0].media_url, image_filename)
                 counter=counter+1
             except:
         	    counter=counter+1
+    return filename_list

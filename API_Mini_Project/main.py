@@ -4,7 +4,7 @@ from Read_Gvis_API_Keys import Read_Gvis_API_Keys
 from GoogleVis_API_Call import GoogleVis_API_Call
 
 api_access_info = Read_API_Keys()
-Twitter_API_Call(api_access_info)
-client = Read_Gvis_API_Keys()
-GoogleVis_API_Call(client)
+filename_list = Twitter_API_Call(api_access_info)
+credentials = Read_Gvis_API_Keys()
+GoogleVis_API_Call(credentials, filename_list)
 
