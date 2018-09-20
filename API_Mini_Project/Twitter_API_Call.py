@@ -33,7 +33,7 @@ def Twitter_API_Call(api_access_info):
                 counter=counter+1
             except:
         	    counter=counter+1
-        	digits = 0
+            digits = 0
     return filename_list
 
 
