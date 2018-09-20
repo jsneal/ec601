@@ -17,6 +17,8 @@ def Twitter_API_Call(api_access_info):
                             access_token_key=access_token,
                             access_token_secret=access_token_secret)
     sirjoancornella_statuses = twitter_api.GetUserTimeline(screen_name="sirjoancornella")
+    zerostr = "-"
+    digits = 0
     counter = 0
     for status in sirjoancornella_statuses:
 	    if type(status.media) is list:
@@ -24,10 +26,15 @@ def Twitter_API_Call(api_access_info):
 		    url_list.append(status.media[0].media_url)
 		    print("\n")
             try:
-                image_filename = "Twitter_Pictures/image"+str(counter)+".jpg"
-                filename_list.append(image_filename)
+                digits = counter/10
+                zerostr = "-"+str(counter).rjust(3, "0")
+                image_filename = "Twitter_Pictures/image"+zerostr+".jpg"
                 image = urllib.urlretrieve(status.media[0].media_url, image_filename)
                 counter=counter+1
             except:
         	    counter=counter+1
+        	digits = 0
     return filename_list
+
+
+\
