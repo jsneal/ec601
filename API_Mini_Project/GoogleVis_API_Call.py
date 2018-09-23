@@ -1,4 +1,4 @@
-# Code mainly from "Using the Client Library in Google Vision Documentation"
+# Code and most comments mainly from "Using the Client Library in Google Vision Documentation"
 def GoogleVis_API_Call(credentials, filename_list):
     import io
     import os
@@ -9,8 +9,13 @@ def GoogleVis_API_Call(credentials, filename_list):
     from google.cloud.vision import types
 
     from google.cloud import vision
-    client = vision.ImageAnnotatorClient(
-        credentials=credentials)
+    labelstr = 'Labels for image '
+    counter = 1
+    try: # Calling the Google Vision API
+        client = vision.ImageAnnotatorClient(
+            credentials=credentials)
+    except:
+        print('Google Vision API call error')
     for twitter_image in filename_list[1:-1]:
         # The name of the image file to annotate
         try:
@@ -28,12 +33,14 @@ def GoogleVis_API_Call(credentials, filename_list):
             response = client.label_detection(image=image)
             labels = response.label_annotations
 
-            print('Labels:')
+            newlabelstr = labelstr + str(counter)
+            print(newlabelstr) # Correspond labels with the order of images in video
             for label in labels:
                 print(label.description)
             print("\n\n")
             label_list.append(label.description)
         except:
-            print('Error')
+            print('Error detecting labels')     # In case label detection does not work
             label_list.append('No label')
+        counter = counter+1
     return [label_list, image_list]
