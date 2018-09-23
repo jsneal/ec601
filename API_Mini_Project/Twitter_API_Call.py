@@ -33,7 +33,7 @@ def Twitter_API_Call(api_access_info):
                 counter=counter+1
                 filename_list.append(image_filename) # This list will be useful when the video is created.
             except:
-        	    print('Twitter API Error')
+              print('Loading . . .')
             digits = 0
     return filename_list
 
