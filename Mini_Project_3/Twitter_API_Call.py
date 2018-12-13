@@ -1,6 +1,6 @@
 # Consulted documentation about python-twitter for the methods and class structure of twitter.api as well as pydoc twitter.api
 
-## This module calls the Twitter API for Joan Cornella, grab's statuses from their Twitter timeline, 
+## This module calls the Twitter API for user entered Twitter Handle, grab's statuses from their Twitter timeline, 
 ## and prints the media of these statuses. 
 def Twitter_API_Call(api_access_info):
     import twitter
@@ -15,7 +15,10 @@ def Twitter_API_Call(api_access_info):
                             consumer_secret=api_secret_key,
                             access_token_key=access_token,
                             access_token_secret=access_token_secret)
-    sirjoancornella_statuses = twitter_api.GetUserTimeline(screen_name="sirjoancornella")  # this gathers the twitter feed of @sirjoancornella into a data structure
+    screenName = ""
+    screenName = raw_input("Enter a twitter handle (without the @): ")
+    screenName = "@" + screenName
+    sirjoancornella_statuses = twitter_api.GetUserTimeline(screen_name=screenName)  # this gathers the twitter feed of @__screenName__ into a data structure
     zerostr = "-"
     digits = 0
     counter = 0
