@@ -38,7 +38,7 @@ def Twitter_API_Call(api_access_info):
             except:
               print('Loading . . .')
             digits = 0
-    return filename_list
+    return [filename_list, screenName]
 
 
 \

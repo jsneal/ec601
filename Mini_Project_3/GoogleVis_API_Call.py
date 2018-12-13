@@ -4,6 +4,7 @@ def GoogleVis_API_Call(credentials, filename_list):
     import os
     label_list = []
     image_list = []
+    labels_per_image = []
     # Imports the Google Cloud client library
     from google.cloud import vision
     from google.cloud.vision import types
@@ -37,10 +38,12 @@ def GoogleVis_API_Call(credentials, filename_list):
             print(newlabelstr) # Correspond labels with the order of images in video
             for label in labels:
                 print(label.description)
+                label_list.append(label.description)
             print("\n\n")
-            label_list.append(label.description)
+            labels_per_image.append(label_list)
+            label_list = []
         except:
             print('Error detecting labels')     # In case label detection does not work
             label_list.append('No label')
         counter = counter+1
-    return [label_list, image_list]
+    return [labels_per_image, image_list]
