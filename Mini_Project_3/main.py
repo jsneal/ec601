@@ -11,6 +11,8 @@ from Read_Gvis_API_Keys import Read_Gvis_API_Keys
 from GoogleVis_API_Call import GoogleVis_API_Call
 from Images_to_Video import Images_to_Video
 from Clear_Twitter_Pictures_Folder import Clear_Twitter_Pictures_Folder
+from signIn import signIn
+username = signIn()
 Clear_Twitter_Pictures_Folder()
 print('Reading Twitter API keys . . .')
 api_access_info = Read_API_Keys()
