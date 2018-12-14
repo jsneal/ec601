@@ -2,7 +2,7 @@
 
 # You can read more indepth about the project in main_mysql.py (the main for the MySQL implementation of Mini Project 3) and main_mongo.py (the main for the MongoDB implementation of Mini Project 3)
 
-# Still need to implement:
+# Databases set up and connection of databases with python modules is intact. Still need to implement running queries through python:
 
 -	Search for certain words and retrieve which user/session that has this work in it.  For example, search for ‘basketball”, and get results of which user had Basketball in their sessions.
 
