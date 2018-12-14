@@ -12,13 +12,14 @@ from GoogleVis_API_Call import GoogleVis_API_Call
 from Images_to_Video import Images_to_Video
 from Clear_Twitter_Pictures_Folder import Clear_Twitter_Pictures_Folder
 from signIn import signIn
+from store_in_mysql import store_in_mysql
 [username, dateAccessed] = signIn() # outputs username used to call api
 Clear_Twitter_Pictures_Folder()
 print('Reading Twitter API keys . . .')
 api_access_info = Read_API_Keys()
 print('Twitter API keys retrieved!')
 print('Calling Twitter API . . .')
-[filename_list, screenName] = Twitter_API_Call(api_access_info) # outputs Twitter handle accessed
+[filename_list, screenName, image_url_list] = Twitter_API_Call(api_access_info) # outputs Twitter handle accessed
 print('Images gathered from Twitter feed!')
 print('Reading Google Vision API keys . . .')
 credentials = Read_Gvis_API_Keys()
@@ -34,4 +35,6 @@ print('\n\n')
 print('API Mini Project completed! Watch Twitter_Video.avi with your favorite media player!')
 print('Compare the images in the video with the labels from Google Vision listed earlier in the terminal output.')
 print('Thanks for watching!')
+store_in_mysql(username, dateAccessed, screenName, labels_per_image, image_url_list)
+
 
