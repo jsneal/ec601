@@ -15,7 +15,6 @@ def store_in_mysql(username, dateAccessed, screenName, labels_per_image, image_l
 		imageCounter = 0
 		for image in image_list:
 			try:	# need this if an image doesn't get labels
-				print(imageCounter)
 				add_image = ("INSERT INTO IMAGES "
                		"(username, access_date, twitter_feed_handle, image_location) "
                		"VALUES (%s, %s, %s, %s)")
