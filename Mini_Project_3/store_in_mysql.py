@@ -1,4 +1,5 @@
 import mysql.connector
+import sys
 """
 Based on code from: https://dev.mysql.com/doc/connector-python/en/connector-python-example-cursor-transaction.html
 """
@@ -13,23 +14,28 @@ def store_in_mysql(username, dateAccessed, screenName, labels_per_image, image_l
 		cursor = cnx.cursor()
 		imageCounter = 0
 		for image in image_list:
-			add_image = ("INSERT INTO IMAGES "
-               "(username, access_date, twitter_feed_handle, image_location) "
-               "VALUES (%s, %s, %s, %s)")
+			try:	# need this if an image doesn't get labels
+				print(imageCounter)
+				add_image = ("INSERT INTO IMAGES "
+               		"(username, access_date, twitter_feed_handle, image_location) "
+               		"VALUES (%s, %s, %s, %s)")
 
-			data_image = (username, dateAccessed, screenName, image)
+				data_image = (str(username), str(dateAccessed)[0:19], str(screenName), str(image))
 
-			cursor.execute(add_image, data_image)
-			for tag in labels_per_image[imageCounter]:
+				cursor.execute(add_image, data_image)
 
-				add_image_tag = ("INSERT INTO IMAGE_TAGS "
-              	"(twitter_feed_handle, image_location, tag) "
-              	"VALUES (%s, %s, %s)")
+				for tag in labels_per_image[imageCounter]:
 
-				data_image_tag = (screenName, image, tag)
+					add_image_tag = ("INSERT INTO IMAGE_TAGS "
+              			"(twitter_feed_handle, image_location, tag) "
+              			"VALUES (%s, %s, %s)")
 
-				cursor.execute(add_image_tag, data_image_tag)
-			imageCounter+=1
+					data_image_tag = (str(screenName), str(image), str(tag))
+
+					cursor.execute(add_image_tag, data_image_tag)
+				imageCounter+=1
+			except:
+				imageCounter+=1
 
 		cnx.commit()
 
@@ -37,5 +43,6 @@ def store_in_mysql(username, dateAccessed, screenName, labels_per_image, image_l
 		cnx.close()
 		print('Data stored in local MySQL database!')
 	except:
+		print(sys.exc_info())
 		print('MySQL Module Error!')
 	return

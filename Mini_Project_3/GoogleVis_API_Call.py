@@ -45,5 +45,6 @@ def GoogleVis_API_Call(credentials, filename_list):
         except:
             print('Error detecting labels')     # In case label detection does not work
             label_list.append('No label')
+            labels_per_image.append([])
         counter = counter+1
     return [labels_per_image, image_list]
