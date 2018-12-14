@@ -2,13 +2,25 @@
 
 # You can read more indepth about the project in main_mysql.py (the main for the MySQL implementation of Mini Project 3) and main_mongo.py (the main for the MongoDB implementation of Mini Project 3)
 
-# Databases set up and connection of databases with python modules is intact. Still need to implement running queries through python:
+# Currently the only query run is one that matches the number of instances of any tag appearing in Twitter API accesses.
 
--	Search for certain words and retrieve which user/session that has this work in it.  For example, search for ‘basketball”, and get results of which user had Basketball in their sessions.
+# Future Developments:
 
--	Collective statistics about overall usage of the system.  For example
-  •	Number of images per feed
-  •	Most popular descriptors
+	- updated documentation explaining the database impementation functions (especially when another user needs to enter own credentials)
+	- a script to populate the databases with more entries, because adding entries by hand just isn't fun :( and the magic only happens when you have tons of random data
+
+# Helpful info on setting up MySQL and MongoDB used for this project:
+
+	## MySQL:
+
+		- https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-centos-7
+		- https://www.digitalocean.com/community/tutorials/a-basic-mysql-tutorial
+		- https://dev.mysql.com/doc/connector-python/en/
+
+	## Mongo DB:
+
+		- https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/
+		- https://api.mongodb.com/python/current/
 
 
 # If for any reason you'd like to contact me about this project, feel free to contact me at jsneal519@gmail.com.

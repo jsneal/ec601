@@ -1,4 +1,5 @@
-"""This is the top module for the MySQL implementation of Mini_Project_3
+"""
+This is the top module for the MySQL implementation of Mini_Project_3
 This particular project reads the twitter statuses from a user selected twitter feed.
 Then it gathers Google Vision's labels for these images by using their API.
 Then it uses ffmpeg to turn these images into a slideshow video.
@@ -14,6 +15,7 @@ from Images_to_Video import Images_to_Video
 from Clear_Twitter_Pictures_Folder import Clear_Twitter_Pictures_Folder
 from signIn import signIn
 from store_in_mysql import store_in_mysql
+from mysql_queries import mysql_queries
 [username, dateAccessed] = signIn() # outputs username used to call api
 Clear_Twitter_Pictures_Folder()
 print('Reading Twitter API keys . . .')
@@ -37,5 +39,6 @@ print('API Mini Project completed! Watch Twitter_Video.avi with your favorite me
 print('Compare the images in the video with the labels from Google Vision listed earlier in the terminal output.')
 print('Thanks for watching!')
 store_in_mysql(username, dateAccessed, screenName, labels_per_image, image_url_list)
+mysql_queries()	# generates a query that shows how many instances of a certain tag have appeared in Twitter API accesses.
 
 
